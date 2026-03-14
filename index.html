@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stargate Explorers Garry's Mod</title>
+    <style>
+        body { 
+            background: #000; 
+            margin: 0; padding: 0; 
+            overflow: hidden; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        #slideshow {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.6);
+            transition: background-image 1.5s ease-in-out;
+        }
+
+        #vignette {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+            z-index: 0;
+        }
+
+        .header-container {
+            position: absolute;
+            top: 50px;
+            width: 100%;
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            margin: 0;
+            text-shadow: 0px 0px 20px rgba(0, 255, 0, 0.3);
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+
+        .motd-container {
+            position: absolute;
+            left: 50px;
+            top: 220px;
+            width: 320px;
+            background: rgba(0, 0, 0, 0.75);
+            border-left: 4px solid #00FF00;
+            padding: 20px;
+            z-index: 20;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .motd-title {
+            color: #00FF00;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .motd-content {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 150px;
+            left: 20%;
+            right: 20%;
+            width: 60%;
+            z-index: 10;
+        }
+
+        .status-text {
+            font-size: 1.1rem;
+            color: #00FF00;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0,255,0,0.5);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(0,255,0,0.2);
+        }
+
+        #progress-bar {
+            width: 5%;
+            height: 100%;
+            background: #00FF00;
+            box-shadow: 0 0 20px #00FF00;
+            transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="slideshow"></div>
+    <div id="vignette"></div>
+
+    <div class="header-container">
+        <h1>homigrading my grad</h1>
+    </div>
+
+    <div class="motd-container">
+        <div class="motd-title">Message of the Day</div>
+        <div class="motd-content">
+            Welcome to the American Simulator, use guns and drugs
+        </div>
+    </div>
+
+    <div class="footer">
+        <div id="status" class="status-text">SYNCING ADDONS...</div>
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+    </div>
+
+    <script>
+        const images = [
+            "https://www.dropbox.com/scl/fi/l82ynzjaj0bf7ly9tchgl/image.png?rlkey=24oow2zum3jxvnes8o5xc0i71&st=5opiqtxx&dl=1",
+            "https://www.dropbox.com/scl/fi/zgnvt6xxf03nbdy0mk5gc/image2.png?rlkey=6t80llaym43wbyhu7a6zpnmf9&st=hzzyia4l&dl=1",
+            "https://www.dropbox.com/scl/fi/kfuqcr8z0tt2pnufdysx2/image3.png?rlkey=4sa95e4vreqefkxlmc3tzhjc8&st=ndfi82ew&dl=1",
+            "https://www.dropbox.com/scl/fi/cn8skrk3cu0jv76f4vy6z/image4.png?rlkey=d651n7j2u7qsopf1m5rgzjdt9&st=6w6vgz90&dl=1",
+            "https://www.dropbox.com/scl/fi/bl5im9q6h49v8xk485ot0/image5.png?rlkey=b4eq8xz9s842d890kekd6lm1k&st=rl8ogyr6&dl=1",
+            "https://www.dropbox.com/scl/fi/eqt2ykiru7la2u7dphxql/image6.png?rlkey=i9bv5w0nnu2j5cn3tj7bvvyv6&st=4zlka16d&dl=1"
+        ];
+
+        let lastIndex = -1;
+        const slideshow = document.getElementById('slideshow');
+        const progressBar = document.getElementById('progress-bar');
+        const statusText = document.getElementById('status');
+        
+        let currentPct = 5;
+
+        function nextImage() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * images.length);
+            } while (newIndex === lastIndex && images.length > 1);
+            lastIndex = newIndex;
+            slideshow.style.backgroundImage = `url('${images[newIndex]}')`;
+        }
+
+        nextImage();
+        setInterval(nextImage, 10000);
+
+        function setBar(pct) {
+            if (pct > currentPct) {
+                currentPct = pct;
+                progressBar.style.width = currentPct + "%";
+            }
+        }
+
+        setInterval(function() {
+            if (currentPct < 98) {
+                setBar(currentPct + 0.02);
+            }
+        }, 50);
+
+        function SetFilesTotal(total) {}
+
+        function SetFilesNeeded(needed) {
+            if (needed <= 0) {
+                setBar(90);
+            } else {
+                setBar(20);
+            }
+        }
+
+        function SetStatusChanged(status) {
+            statusText.innerHTML = status;
+            let s = status.toLowerCase();
+
+            if (s.includes("complete")) setBar(90);
+            if (s.includes("client info")) setBar(95);
+            if (s.includes("starting")) setBar(100);
+        }
+
+        function GameDetails(servername, serverurl, mapname, maxplayers, steamid, gamemode) {
+            setBar(15);
+        }
+    </script>
+</body>
+</html>
