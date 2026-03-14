@@ -56,14 +56,20 @@
         .staff-container {
             position: absolute;
             left: 50px;
-            top: 400px; /* Positioned below the MOTD */
+            top: 360px; /* Adjusted slightly to fit more people */
             width: 320px;
+            max-height: 400px; /* Prevents it from hitting the bottom */
+            overflow-y: auto;
             background: rgba(0, 0, 0, 0.75);
             border-left: 4px solid #00FF00;
             padding: 20px;
             z-index: 20;
             box-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
+
+        /* Scrollbar styling for staff list */
+        .staff-container::-webkit-scrollbar { width: 5px; }
+        .staff-container::-webkit-scrollbar-thumb { background: #00FF00; }
 
         .staff-member {
             display: flex;
@@ -101,7 +107,7 @@
         .motd-container {
             position: absolute;
             left: 50px;
-            top: 220px;
+            top: 200px; /* Adjusted to give more room below */
             width: 320px;
             background: rgba(0, 0, 0, 0.75);
             border-left: 4px solid #00FF00;
@@ -182,18 +188,34 @@
         <div class="motd-title">Staff Team</div>
         
         <div class="staff-member">
-            <img class="staff-avatar" src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg" alt="Owner">
+            <img class="staff-avatar" src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg" alt="Developers">
             <div class="staff-info">
-                <span class="staff-name">Garry Newman</span>
-                <span class="staff-rank">Founder</span>
+                <span class="staff-name">General Jack O'Neill</span>
+                <span class="staff-rank">Owner and Developer</span>
             </div>
         </div>
 
         <div class="staff-member">
-            <img class="staff-avatar" src="https://avatars.akamai.steamstatic.com/6ad804300302b66236b28014f323e20ec1d9f826_full.jpg" alt="Admin">
+            <img class="staff-avatar" src="https://avatars.fastly.steamstatic.com/4ed0c234ca6ca13a53dde529a55807d532b769a2_full.jpg" alt="Developers">
             <div class="staff-info">
-                <span class="staff-name">Example Admin</span>
-                <span class="staff-rank">Administrator</span>
+                <span class="staff-name">Nexusatko</span>
+                <span class="staff-rank">Lead Developer</span>
+            </div>
+        </div>
+
+        <div class="staff-member">
+            <img class="staff-avatar" src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg" alt="Developers">
+            <div class="staff-info">
+                <span class="staff-name">Weighted Sensory Kitty</span>
+                <span class="staff-rank">Developer</span>
+            </div>
+        </div>
+
+        <div class="staff-member">
+            <img class="staff-avatar" src="https://avatars.akamai.steamstatic.com/6ad804300302b66236b28014f323e20ec1d9f826_full.jpg" alt="Staff">
+            <div class="staff-info">
+                <span class="staff-name">Anomalouspotato</span>
+                <span class="staff-rank">Head Administrator</span>
             </div>
         </div>
 
