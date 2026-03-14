@@ -52,6 +52,52 @@
             50% { opacity: 1; transform: scale(1.02); }
         }
 
+        /* Staff Section Styling */
+        .staff-container {
+            position: absolute;
+            left: 50px;
+            top: 400px; /* Positioned below the MOTD */
+            width: 320px;
+            background: rgba(0, 0, 0, 0.75);
+            border-left: 4px solid #00FF00;
+            padding: 20px;
+            z-index: 20;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .staff-member {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .staff-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 4px;
+            border: 1px solid #00FF00;
+            margin-right: 15px;
+            background-color: #222;
+        }
+
+        .staff-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .staff-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .staff-rank {
+            font-size: 0.8rem;
+            color: #00FF00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
         .motd-container {
             position: absolute;
             left: 50px;
@@ -130,6 +176,27 @@
         <div class="motd-content">
             Welcome to the American Simulator, use guns and drugs
         </div>
+    </div>
+
+    <div class="staff-container">
+        <div class="motd-title">Staff Team</div>
+        
+        <div class="staff-member">
+            <img class="staff-avatar" src="https://avatars.akamai.steamstatic.com/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_full.jpg" alt="Owner">
+            <div class="staff-info">
+                <span class="staff-name">Garry Newman</span>
+                <span class="staff-rank">Founder</span>
+            </div>
+        </div>
+
+        <div class="staff-member">
+            <img class="staff-avatar" src="https://avatars.akamai.steamstatic.com/6ad804300302b66236b28014f323e20ec1d9f826_full.jpg" alt="Admin">
+            <div class="staff-info">
+                <span class="staff-name">Example Admin</span>
+                <span class="staff-rank">Administrator</span>
+            </div>
+        </div>
+
     </div>
 
     <div class="footer">
